@@ -10,7 +10,7 @@ setup(
         packages=find_packages(),
         include_package_data=True,
         install_requires=[
-            'prometheus_client==0.20.0',
+            'prometheus_client==0.2.0',
             'huey==1.11.0',
             'click==6.7',
             'redis==3.5.3',
