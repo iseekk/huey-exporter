@@ -26,9 +26,9 @@ def run_exporter(connection_string, queue_name, port):
     # Start up the server to expose the metrics.
     start_http_server(port)
     connection_pool = redis.BlockingConnectionPool.from_url(
-            connection_string,
-            max_connections=5,
-            timeout=10
+        connection_string,
+        max_connections=5,
+        timeout=10
     )
     queue = EventQueue(queue_name, connection_pool)
     queue.listen()
