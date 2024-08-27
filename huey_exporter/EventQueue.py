@@ -15,8 +15,6 @@ TASK_DURATION_SUMMARY = Summary('huey_task_duration_seconds', 'Time spent proces
 
 class EventQueue:
 
-    prefix = 'queue_task_'
-
     def __init__(self, name, connection_pool):
         self.name = name
         self.clean_name = self.clean_queue_name(self.name)
@@ -52,12 +50,9 @@ class EventQueue:
     def labels(self, event):
         return {
             'queue_name': self.name,
-            'task_name': self.clean_event_name(event['task'])
+            'task_name': event['task']
         }
 
-    def clean_event_name(self, name):
-        return name[len(self.prefix):]
-
-    # Copied from https://github.com/coleifer/huey/blob/1.9.1/huey/storage.py#L302
+    # Copied from https://github.com/coleifer/huey/blob/1.11.0/huey/storage.py#L309
     def clean_queue_name(self, name):
         return re.sub('[^a-z0-9]', '', name)
